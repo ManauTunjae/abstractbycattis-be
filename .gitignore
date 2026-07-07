@@ -37,3 +37,5 @@ out/
 *.njsproj
 *.sln
 *.swp
+
+node_modules/
