@@ -37,8 +37,15 @@ const userSchema = new mongoose.Schema({
 
 // Hash the password before saving the user document
 userSchema.pre("save", async function () {
-    if (!this.isModified("passwordHash")) return;
+  if (!this.isModified("passwordHash")) return;
 
-    const salt = await bcrypt.genSalt(10);
-    this.passwordHash = await bcrypt.hash(this.passwordHash, salt); 
-})
+  const salt = await bcrypt.genSalt(10);
+  this.passwordHash = await bcrypt.hash(this.passwordHash, salt);
+});
+
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.passwordHash);
+};
+
+const User = mongoose.model("User", userSchema);
+export default User;
