@@ -9,3 +9,14 @@ const imageSchema = new mongoose.Schema(
     _id: false,
   },
 );
+
+const dimensionsSchema = new mongoose.Schema(
+  {
+    width: { type: Number, required: true },
+    height: { type: Number, required: true },
+    unit: { type: String, default: "cm" },
+  },
+  {
+    _id: false,
+  },
+);
