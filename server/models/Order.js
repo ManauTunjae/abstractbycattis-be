@@ -15,3 +15,28 @@ const orderItemSchema = new mongoose.Schema(
   },
   { _id: false },
 );
+
+const orderCustomerSchema = new mongoose.Schema(
+  {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null, // Allow null for guest users
+    },
+    name: {
+      type: String,
+      required: true,
+    },
+    email: {
+      type: String,
+      required: true,
+    },
+    address: {
+      street: { type: String, required: true },
+      city: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      country: { type: String },
+    },
+  },
+  { _id: false },
+);
