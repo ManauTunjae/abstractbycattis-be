@@ -46,6 +46,10 @@ const orderSchema = new mongoose.Schema(
     customer: {
       type: orderCustomerSchema,
       required: true,
+    },
+    items: {
+      type: [orderItemSchema],
+      required: true,
       validate: {
         validator: (arr) => arr.length > 0,
         message: "Order must have at least one painting.",
@@ -61,11 +65,14 @@ const orderSchema = new mongoose.Schema(
       enum: ["pending", "paid", "shipped", "delivered", "cancelled"],
       default: "pending",
     },
+    paymentIntentId: {
+      type: String,
+    },
     shippingMethod: {
       type: String,
     },
   },
-  { timestamp: true },
+  { timestamps: true },
 );
 
 const Order = mongoose.model("Order", orderSchema);
