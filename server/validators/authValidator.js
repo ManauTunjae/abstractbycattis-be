@@ -1,4 +1,4 @@
-import { body, validationResult } from "express/validator";
+import { body, validationResult } from "express-validator";
 
 export const registerValidator = [
   body("name").trim().notEmpty().withMessage("Name is required."),
