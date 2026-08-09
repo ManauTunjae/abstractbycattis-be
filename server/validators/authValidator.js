@@ -15,3 +15,13 @@ export const loginValidator = [
     .withMessage("Type a valid email address."),
   body("password").notEmpty().withMessage("Password is required."),
 ];
+
+export const handleValidationErrors = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({
+      errors: errors.array().map((e) => ({ field: e.path, message: e.msg })),
+    });
+  }
+  next();
+};
