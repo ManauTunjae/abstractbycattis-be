@@ -5,3 +5,5 @@ const generateToken = (userId, role) => {
     expiresIn: "7d",
   });
 };
+
+export default generateToken;
