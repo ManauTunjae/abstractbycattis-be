@@ -5,6 +5,7 @@ import {
   loginValidator,
   handleValidationErrors,
 } from "../validators/authValidator.js";
+import { verifyToken, requireAdmin } from "../middleware/auth.js";
 
 const router = express.Router();
 
